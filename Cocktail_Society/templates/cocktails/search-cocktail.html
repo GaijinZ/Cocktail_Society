@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="add-page">
+  <h2>Search for Cocktails</h2>
+  <div class="add-form">
+    <form method='GET' action="{% url 'cocktails:search-results' %}">
+        {{ filter.form.as_p }}
+      <button class="btn" type="submit">Search</button>
+  </form>
+  </div>
+</div>
+<div class="results">
+  {% for obj in filter.qs %}
+  <div class="results-item">
+    <h4>{{ obj.cocktail_name | capfirst}}</h4>
+  <img src="{{ obj.image.url }}" width="200" height="200">
+    <h5>{{ obj.user.username }}</h5>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

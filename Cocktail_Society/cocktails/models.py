@@ -1,0 +1,36 @@
+from django.db import models
+from datetime import datetime
+
+from accounts.models import Account
+
+
+# Create your models here.
+class AddCocktails(models.Model):
+    COCKTAIL_CATEGORY = (
+        ('alc', 'Alcoholic'),
+        ('nonalc', 'Noc-Alcoholic')
+    )
+    GLASS_CATEGORY = (
+        ('short', 'Short'),
+        ('long', 'Long')
+    )
+    METHODS = (
+        ('stir', 'Stirren'),
+        ('shake', 'Shaken'),
+        ('build', 'Build')
+    )
+
+    cocktail_name = models.CharField(max_length=100, null=True)
+    cocktails_category = models.CharField(max_length=50, choices=COCKTAIL_CATEGORY)
+    crockery_category = models.CharField(max_length=50, choices=GLASS_CATEGORY)
+    method_category = models.CharField(max_length=50, choices=METHODS)
+    ingredients = models.TextField(max_length=100, null=True)
+    execution = models.TextField(max_length=150)
+    image = models.ImageField(upload_to='cocktails_pics')
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
+    date = models.DateField(default=datetime.now)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return f'{self.cocktail_name}, {self.user}'

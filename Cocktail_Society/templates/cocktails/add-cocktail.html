@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="add-page">
+    <h2>Add Your Cocktail</h2>
+    <div class="add-form">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>Cocktail Name</h4>
+            {{ form.cocktail_name }}
+            <h4>Cocktail Category</h4>
+            {{ form.cocktails_category }}
+            <h4>Type of Glass</h4>
+            {{ form.crockery_category }}
+            <h4>Method Category</h4>
+            {{ form.method_category }}
+            <h4>Ingredients</h4>
+            {{ form.ingredients }}
+            <h4>Execution</h4>
+            {{ form.execution }}
+            <h4>Add Picture</h4>
+            {{ form.image }}
+            <button class="btn" type="submit">Add</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
