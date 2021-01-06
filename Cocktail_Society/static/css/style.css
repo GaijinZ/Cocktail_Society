@@ -286,7 +286,6 @@ footer {
     margin: 10px;
     padding: 5px 10px 10px 10px;
     font-family: 'Poppins', sans-serif;
-
 }
 
 .add-page h2 {
@@ -352,4 +351,42 @@ footer {
     margin: 0 10px;
     padding: 5px 10px 10px 10px;
     text-align: center;
+}
+
+.most-rated {
+    width: 90%;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: 'Poppins', sans-serif;
+}
+
+.most-rated h2 {
+    position: absolute;
+    left: 60px;
+    top: 1px;
+    font-size: 20px;
+    border-bottom: 5px solid #071D61;
+}
+
+.most-rated h4 {
+    font-size: 14px;
+}
+
+.most-rated-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px;
+    padding: 15px 20px 20px 20px;
+    text-align: center;
+}
+
+.most-rated a {
+    text-decoration: none;
+    color: gray;
 }

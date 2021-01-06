@@ -20,8 +20,3 @@ const navSlide = () => {
 }
 
 navSlide();
-
-
-$('.rating a').on('click', function(e){let value = $(this).data('value');
-    %.ajax({
-        url:})})

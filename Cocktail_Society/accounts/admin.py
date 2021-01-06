@@ -1,8 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
 
 from .models import Account
-from cocktails.models import AddCocktails
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 
 
@@ -34,6 +32,3 @@ class UserAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Account, UserAdmin)
-admin.site.register(AddCocktails)
-
-

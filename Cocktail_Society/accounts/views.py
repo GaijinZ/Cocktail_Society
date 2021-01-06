@@ -61,7 +61,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Account
     form_class = UpdateProfileForm
     template_name = 'accounts/edit-profile.html'
-    success_url = '/'
+    success_url = reverse_lazy('accounts:profile')
     success_message = 'Profile updated successfully'
 
     def get_object(self): # noqa
