@@ -85,5 +85,3 @@ class Account(AbstractUser):
     def is_user_active(self):
         "Is the user active?"
         return self.is_active
-
-

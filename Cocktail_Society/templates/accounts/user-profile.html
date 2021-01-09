@@ -4,7 +4,6 @@
 {% block content %}
 <div class="add-page">
 <h2>Account</h2>
-    {% for object in user_data %}
     <div class="add-form">
         <form method="GET" enctype="multipart/form-data">
             {% if user.account.avatar %}
@@ -20,11 +19,13 @@
             <p>{{ object.first_name|capfirst }}</p>
             <h4>Last name</h4>
             <p>{{ object.last_name|capfirst }}</p>
+            <div class="link">
+            <button class="btn"><a href="{% url 'accounts:edit-profile' %}">Edit Profile</a></button>
+            </div>
         </form>
     </div>
-    {% endfor %}
 </div>
-    <div class="profile-cocktails">
+<div class="profile-cocktails">
         <a href="{% url 'cocktails:my-cocktails' %}"><h3>My cocktails</h3></a>
-    </div>
+</div>
 {% endblock %}

@@ -1,14 +1,14 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
 <div class="most-rated">
-    <h2>Cocktails with most likes</h2>
+    <h2>My Cocktails</h2>
     {% for cocktail in object_list %}
      <div class="most-rated-item">
         <a href="{% url 'cocktails:cocktail-details' cocktail.pk %}">
             <h4>{{ cocktail.cocktail_name }}</h4>
             <img src="{{ cocktail.image.url }}" width="200" height="200">
-            <h4>Made by {{ cocktail.user.username }}</h4>
         </a>
      </div>
    {% endfor %}

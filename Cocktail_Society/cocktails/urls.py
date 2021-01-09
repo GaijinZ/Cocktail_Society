@@ -10,7 +10,8 @@ urlpatterns = [
     path('add-cocktail/', AddCocktail.as_view(), name='add-cocktail'),
     path('search-cocktail/', SearchCocktail.as_view(), name='search-cocktail'),
     path('search-ingredients/', SearchIngredients.as_view(), name='search-ingredients'),
-    path('search-results/', SearchCocktail.as_view(), name='search-results'),
+    path('search-results/', SearchResults.as_view(), name='search-results'),
     path('cocktail-details/<int:pk>/', CocktailDetails.as_view(), name='cocktail-details'),
     path('likes/<int:pk>/', like_view, name='likes'),
+    path('my-cocktails/', MyCocktailList.as_view(), name='my-cocktails'),
 ]

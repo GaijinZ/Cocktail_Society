@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth import logout, authenticate, login
 from django.views.generic import CreateView, FormView, RedirectView, UpdateView, DetailView
@@ -50,8 +50,25 @@ class LogoutView(RedirectView):
         return super(LogoutView, self).get(request, *args, **kwargs)
 
 
-class ProfileView(LoginRequiredMixin, DetailView):
+class UserProfileView(DetailView):
+    model = Account
     template_name = 'accounts/profile.html'
+
+    def get_object(self): # noqa
+        return self.request.user
+
+    def get_context_data(self, *args, **kwargs):
+        user_data = Account.objects.filter(id=self.kwargs['pk'])
+        context = super().get_context_data(**kwargs)
+
+        context['user_data'] = user_data
+
+        return context
+
+
+class CurrentUserProfileView(LoginRequiredMixin, DetailView):
+    model = Account
+    template_name = 'accounts/user-profile.html'
 
     def get_object(self): # noqa
         return self.request.user
@@ -61,7 +78,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Account
     form_class = UpdateProfileForm
     template_name = 'accounts/edit-profile.html'
-    success_url = reverse_lazy('accounts:profile')
+    success_url = reverse_lazy('accounts:user-profile')
     success_message = 'Profile updated successfully'
 
     def get_object(self): # noqa

@@ -44,7 +44,7 @@
         <ul class="nav-links-account">
             {% if user.is_authenticated %}
             <li>
-                <a href="{% url 'accounts:profile' %}"><h5>Profile</h5></a>
+                <a href="{% url 'accounts:user-profile' %}"><h5>Profile</h5></a>
             </li>
             <li>
                 <a href="{% url 'accounts:logout-redirect' %}"><h5>Logout</h5></a>

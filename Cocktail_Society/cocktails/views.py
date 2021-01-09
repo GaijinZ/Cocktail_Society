@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, FormView, DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -32,7 +32,7 @@ class HomePageView(ListView):
     model = AddCocktails
 
     def get_queryset(self):
-        return AddCocktails.objects.annotate(total_likes=Count('likes')).filter(total_likes__gt=0).order_by('-date')[:5]
+        return AddCocktails.objects.annotate(total_likes=Count('likes'))
 
 
 class AboutPageView(TemplateView):
@@ -56,11 +56,18 @@ class AddCocktail(SuccessMessageMixin, LoginRequiredMixin, FormView):
 class SearchCocktail(LoginRequiredMixin, FilterView):
     template_name = 'cocktails/search-cocktail.html'
     model = AddCocktails
+    filterset_class = CocktailFilter
+    success_url = 'cocktails/search-results.html'
+
+
+class SearchResults(LoginRequiredMixin, FilterView):
+    template_name = 'cocktails/search-results.html'
+    model = AddCocktails
     context_object_name = 'cocktail_list'
     filterset_class = CocktailFilter
 
 
-class CocktailDetails(LoginRequiredMixin, DetailView):
+class CocktailDetails(DetailView):
     model = AddCocktails
     template_name = 'cocktails/cocktail-details.html'
 
@@ -84,3 +91,11 @@ class CocktailDetails(LoginRequiredMixin, DetailView):
 class SearchIngredients(LoginRequiredMixin, TemplateView):
     template_name = 'cocktails/search-ingredients.html'
 
+
+class MyCocktailList(ListView):
+    model = AddCocktails
+    template_name = 'cocktails/my-cocktails.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return AddCocktails.objects.filter(user=self.request.user).order_by('-created')
