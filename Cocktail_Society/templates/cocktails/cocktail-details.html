@@ -20,17 +20,17 @@
         {{ cocktail.method_category }}
         <h4>Ingredients</h4>
         {{ cocktail.ingredients }}
-        <h4>Execution</h4>
+        <h4>Description</h4>
         {{ cocktail.execution }}
         <form action="{% url 'cocktails:likes' cocktail.pk %}" method=POST>
             {% csrf_token %}
             {% if liked %}
                 <button type="submit" name="cocktail.id" value="{{ cocktail.id }}" class="btn-unlike">
-                    {{ total_likes }} Likes
+                    {{ total_likes }} Like
                 </button>
             {% else %}
                 <button type="submit" name="cocktail.id" value="{{ cocktail.id }}" class="btn">
-                    {{ total_likes }} Likes
+                    {{ total_likes }} Like
                 </button>
             {% endif %}
         </form>

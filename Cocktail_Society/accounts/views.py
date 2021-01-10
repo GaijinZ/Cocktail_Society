@@ -20,6 +20,9 @@ class RegisterView(SuccessMessageMixin, CreateView):
 
 
 class LoginView(SuccessMessageMixin, FormView):
+    """
+    Login users by email address.
+    """
     form_class = LoginForm
     success_url = '/'
     template_name = 'accounts/login.html'
@@ -40,7 +43,7 @@ class LoginView(SuccessMessageMixin, FormView):
 
 class LogoutView(RedirectView):
     """
-    Provides users the ability to logout
+    Provides users the ability to logout.
     """
     url = '/'
     success_message = "%(username)s you have been logged out!"
@@ -75,6 +78,9 @@ class CurrentUserProfileView(LoginRequiredMixin, DetailView):
 
 
 class EditProfileView(LoginRequiredMixin, UpdateView):
+    """
+    Allows users to edit their profiles.
+    """
     model = Account
     form_class = UpdateProfileForm
     template_name = 'accounts/edit-profile.html'

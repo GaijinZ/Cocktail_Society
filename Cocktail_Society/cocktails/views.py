@@ -15,6 +15,9 @@ from .filters import CocktailFilter
 
 # Create your views here.
 def like_view(request, pk):
+    """
+    Like/Unlike system, if it is already liked - Unlike button shows.
+    """
     cocktail = get_object_or_404(AddCocktails, id=pk)
     liked = False
     if cocktail.likes.filter(id=request.user.id).exists():
@@ -28,11 +31,14 @@ def like_view(request, pk):
 
 
 class HomePageView(ListView):
+    """
+    Home page with top 5 cocktails with most likes.
+    """
     template_name = 'cocktails/home.html'
     model = AddCocktails
 
     def get_queryset(self):
-        return AddCocktails.objects.annotate(total_likes=Count('likes')).order_by('-total_likes')
+        return AddCocktails.objects.annotate(total_likes=Count('likes')).order_by('-total_likes')[:5]
 
 
 class AboutPageView(TemplateView):
@@ -40,6 +46,9 @@ class AboutPageView(TemplateView):
 
 
 class AddCocktail(SuccessMessageMixin, LoginRequiredMixin, FormView):
+    """
+    Page to add your cocktail with all the description and image.
+    """
     model = AddCocktails
     form_class = AddCocktailForm
     template_name = 'cocktails/add-cocktail.html'
@@ -54,6 +63,10 @@ class AddCocktail(SuccessMessageMixin, LoginRequiredMixin, FormView):
 
 
 class SearchCocktail(LoginRequiredMixin, FilterView):
+    """
+    Search for cocktails system, can search by name, by category - alcoholic/non-alcoholic,
+    by ingredient it contains.
+    """
     template_name = 'cocktails/search-cocktail.html'
     model = AddCocktails
     filterset_class = CocktailFilter
@@ -61,13 +74,21 @@ class SearchCocktail(LoginRequiredMixin, FilterView):
 
 
 class SearchResults(LoginRequiredMixin, FilterView):
+    """
+    All the results from SearchCocktail class are showing in here.
+    """
     template_name = 'cocktails/search-results.html'
     model = AddCocktails
     context_object_name = 'cocktail_list'
     filterset_class = CocktailFilter
+    paginate_by = 10
 
 
 class CocktailDetails(DetailView):
+    """
+    View for a cocktail details page, shows author, name, category, type of glass,
+    method to make, ingredient needed to make one, description and a picture.
+    """
     model = AddCocktails
     template_name = 'cocktails/cocktail-details.html'
 
@@ -93,16 +114,22 @@ class SearchIngredients(LoginRequiredMixin, TemplateView):
 
 
 class MyCocktailList(ListView):
+    """
+    List of cocktails made by logged/selected user.
+    """
     model = AddCocktails
     template_name = 'cocktails/my-cocktails.html'
     context_object_name = 'cocktail_list'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         return AddCocktails.objects.filter(user=self.kwargs['pk'])
 
 
 class DeleteCocktail(LoginRequiredMixin, DeleteView):
+    """
+    Delete cocktail page
+    """
     model = AddCocktails
     template_name = 'cocktails/delete-cocktail.html'
     success_url = reverse_lazy('cocktails:home')

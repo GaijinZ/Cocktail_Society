@@ -42,6 +42,9 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractUser):
+    """
+    Custom model of user using email address as a login/username.
+    """
     email = models.EmailField(verbose_name='email', max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     first_name = models.CharField(verbose_name='first name', max_length=30)

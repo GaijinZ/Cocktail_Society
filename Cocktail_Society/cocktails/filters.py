@@ -4,7 +4,9 @@ from .models import AddCocktails
 
 
 class CocktailFilter(django_filters.FilterSet):
-
+    """
+    Filter search function by name/ingredient or a category(alcoholic/non-alcoholic).
+    """
     class Meta:
         model = AddCocktails
         fields = {
