@@ -229,11 +229,57 @@ footer {
 }
 
 .btn:hover {
-    background-color: #0c3bc9
+    background-color: #0c3bc9;
 }
 
 .btn:active {
     background-color: #0F5DC0;
+}
+
+.btn-delete {
+    width: 90%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 13px 0;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 30px;
+    background-color: #990000;
+    transition: all 0.5s;
+}
+
+.btn-delete:hover {
+    background-color: #e60000;
+}
+
+.btn-delete:active {
+    background-color: #ff0000;
+}
+
+.btn-unlike {
+    width: 90%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 13px 0;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 30px;
+    background-color: #800080;
+    transition: all 0.5s;
+}
+
+.btn-unlike:hover {
+    background-color: #b300b3;
+}
+
+.btn-unlike:active {
+    background-color: #e600e6;
 }
 
 .register-box {
@@ -271,7 +317,7 @@ footer {
     height: 65%;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 40%;
     transform: translate(-50%, -50%);
     color: black;
     margin: 10px;
@@ -365,7 +411,7 @@ footer {
 
 .profile-cocktails {
     position: absolute;
-    left: 26%;
+    left: 16%;
     top: 30%;
     font-size: 14px;
     border-bottom: 5px solid #071D61;
@@ -374,4 +420,32 @@ footer {
 .profile-cocktails a {
     text-decoration: none;
     color: black;
+}
+
+.delete-page {
+    width: 50%;
+    height: 65%;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: black;
+    margin: 10px;
+    padding: 5px 10px 10px 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.delete-page h1 {
+    float: left;
+    font-size: 30px;
+    border-bottom: 5px solid #071D61;
+    margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.delete-page h2 {
+    float: top;
+    font-size: 20px;
+    margin: 40px;
+    font-family: 'Poppins', sans-serif;
 }

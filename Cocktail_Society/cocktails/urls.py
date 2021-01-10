@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views import *
+from . import views
 
 app_name = 'cocktails'
 
@@ -12,6 +13,7 @@ urlpatterns = [
     path('search-ingredients/', SearchIngredients.as_view(), name='search-ingredients'),
     path('search-results/', SearchResults.as_view(), name='search-results'),
     path('cocktail-details/<int:pk>/', CocktailDetails.as_view(), name='cocktail-details'),
-    path('likes/<int:pk>/', like_view, name='likes'),
-    path('my-cocktails/', MyCocktailList.as_view(), name='my-cocktails'),
+    path('likes/<int:pk>/', views.like_view, name='likes'),
+    path('my-cocktails/<int:pk>', MyCocktailList.as_view(), name='my-cocktails'),
+    path('cocktail-details/<int:pk>/delete', DeleteCocktail.as_view(), name='delete-cocktail'),
 ]

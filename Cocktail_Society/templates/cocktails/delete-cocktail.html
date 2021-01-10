@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="delete-page">
+    <h1>Are your sure?</h1>
+    <div class="add-form">
+        <br/>
+        <h2>Delete {{ object.cocktail_name }}?</h2>
+        <br/>
+        <form method="POST">
+            {% csrf_token %}
+            <button class="btn-delete" type="submit">Delete</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

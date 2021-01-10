@@ -1,10 +1,10 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView, FormView, DetailView, ListView
+from django.views.generic import TemplateView, FormView, DetailView, ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Count
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from django_filters.views import FilterView
 
@@ -32,7 +32,7 @@ class HomePageView(ListView):
     model = AddCocktails
 
     def get_queryset(self):
-        return AddCocktails.objects.annotate(total_likes=Count('likes'))
+        return AddCocktails.objects.annotate(total_likes=Count('likes')).order_by('-total_likes')
 
 
 class AboutPageView(TemplateView):
@@ -95,7 +95,22 @@ class SearchIngredients(LoginRequiredMixin, TemplateView):
 class MyCocktailList(ListView):
     model = AddCocktails
     template_name = 'cocktails/my-cocktails.html'
+    context_object_name = 'cocktail_list'
     paginate_by = 5
 
     def get_queryset(self):
-        return AddCocktails.objects.filter(user=self.request.user).order_by('-created')
+        return AddCocktails.objects.filter(user=self.kwargs['pk'])
+
+
+class DeleteCocktail(LoginRequiredMixin, DeleteView):
+    model = AddCocktails
+    template_name = 'cocktails/delete-cocktail.html'
+    success_url = reverse_lazy('cocktails:home')
+    success_message = 'Cocktail deleted successfully'
+
+    # Test user permission
+    def test_func(self):
+        cocktail = self.get_object()
+        if self.request.user == cocktail.account.username:
+            return True
+        return False

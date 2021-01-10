@@ -6,8 +6,8 @@
 <h2>Account</h2>
     <div class="add-form">
         <form method="GET" enctype="multipart/form-data">
-            {% if user.account.avatar %}
-            <img src="{{ object.account.avatar.url }}" alt="Avatar" width="100" height="100">
+            {% if account.avatar %}
+            <img src="{{ account.avatar.url }}" alt="Avatar" width="100" height="100">
             {% else %}
             <img src="{% static 'images/default.jpg' %}" alt="Avatar" width="100" height="100">
             {% endif %}
@@ -26,6 +26,6 @@
     </div>
 </div>
 <div class="profile-cocktails">
-        <a href="{% url 'cocktails:my-cocktails' %}"><h3>My cocktails</h3></a>
+        <a href="{% url 'cocktails:my-cocktails' object.pk %}"><h3>My cocktails</h3></a>
 </div>
 {% endblock %}

@@ -25,15 +25,18 @@
         <form action="{% url 'cocktails:likes' cocktail.pk %}" method=POST>
             {% csrf_token %}
             {% if liked %}
-                <button type="submit" name="cocktail.id" value="{{ cocktail.id }}" class="btn unlike">
+                <button type="submit" name="cocktail.id" value="{{ cocktail.id }}" class="btn-unlike">
                     {{ total_likes }} Likes
                 </button>
             {% else %}
-                <button type="submit" name="cocktail.id" value="{{ cocktail.id }}" class="btn like">
+                <button type="submit" name="cocktail.id" value="{{ cocktail.id }}" class="btn">
                     {{ total_likes }} Likes
                 </button>
             {% endif %}
         </form>
+        {% if user.id == cocktail.user.id %}
+            <a href="{% url 'cocktails:delete-cocktail' cocktail.pk %}"><button class="btn-delete">Delete</button></a>
+        {% endif %}
         {% endfor %}
     </div>
     </div>
