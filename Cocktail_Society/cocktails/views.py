@@ -109,10 +109,6 @@ class CocktailDetails(DetailView):
         return context
 
 
-class SearchIngredients(LoginRequiredMixin, TemplateView):
-    template_name = 'cocktails/search-ingredients.html'
-
-
 class MyCocktailList(ListView):
     """
     List of cocktails made by logged/selected user.
