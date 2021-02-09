@@ -2,8 +2,17 @@ Infused Cocktail Webb App 2.0
 
 # Cocktail_Society
 
-Made a website to share people cocktails. Here you can add your cocktails, share your recipe, add a picture of your cocktails and rate other peple's cocktails :)
+Created a web-app where a user can login.
+User can add cocktails with picure and all ingreditns needed to make one.
+User can view others uses's added cocktails.
+User can search and view cocktials details.
 
+Technologies Used:
+Python 3.8
+Django 3.1
+CSS
+HTML
+---
 Register page.
 <img src="Cocktail_Society/static/images/register page.png">
 
