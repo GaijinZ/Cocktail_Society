@@ -11,7 +11,7 @@
             {{ cocktail.user.username }}
         </a>
         <h4>Cocktail Name</h4>
-        {{ cocktail.cocktail_name }}
+        {{ cocktail.cocktail_name|capfirst }}
         <h4>Cocktail Category</h4>
         {{ cocktail.cocktails_category }}
         <h4>Type of Glass</h4>
@@ -19,9 +19,10 @@
         <h4>Method Category</h4>
         {{ cocktail.method_category }}
         <h4>Ingredients</h4>
-        {{ cocktail.ingredients }}
+        {{ cocktail.ingredients|capfirst }}
         <h4>Description</h4>
         {{ cocktail.execution }}
+
         <form action="{% url 'cocktails:likes' cocktail.pk %}" method=POST>
             {% csrf_token %}
             {% if liked %}
@@ -37,7 +38,28 @@
         {% if user.id == cocktail.user.id %}
             <a href="{% url 'cocktails:delete-cocktail' cocktail.pk %}"><button class="btn-delete">Delete</button></a>
         {% endif %}
-        {% endfor %}
+         <br/>
+        {% if not cocktail.comments.all %}
+         <br/>
+        <a href="{% url 'cocktails:add-comment' cocktail.pk %}">Add a comment</a>
+        <br/>
+        <br/>
+        No comments yet
+        <br/>
+        {% else %}
+        <a href="{% url 'cocktails:add-comment' cocktail.pk %}">Add a comment</a>
+        <br/>
+        <br/>
+            {% for comment in cocktail.comments.all %}
+                <strong>
+                {{ user.username }} -
+                {{ comment.date_added }}
+                </strong>
+                <br/>
+                {{ comment.body }}
+            {% endfor %}
+        {% endif %}
     </div>
     </div>
+{% endfor %}
 {% endblock %}

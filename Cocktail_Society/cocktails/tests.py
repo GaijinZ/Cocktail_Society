@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from .models import AddCocktails
+from .models import Cocktail
 from accounts.models import Account
 
 
@@ -18,7 +18,7 @@ class TestLikes(TestCase):
                                                 last_name='user2_lastname',
                                                 username='user2',
                                                 password='password')
-        cocktail = AddCocktails.objects.create(cocktail_name='my_own',
+        cocktail = Cocktail.objects.create(cocktail_name='my_own',
                                                cocktails_category='alc',
                                                crockery_category='short',
                                                method_category='stir',

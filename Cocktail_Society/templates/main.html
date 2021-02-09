@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Infused</title>
+    <title>Cocktail Society</title>
 
     <script src="/static/js"></script>
 
@@ -33,9 +33,6 @@
             <li>
                 <a href="{% url 'cocktails:search-cocktail' %}"><h5>Search for a Cocktail</h5></a>
             </li>
-            <li>
-                <a href="{% url 'cocktails:search-ingredients' %}"><h5>Look for Ingredients</h5></a>
-            </li>
         </ul>
     </div>
     <div class="middle">
@@ -43,6 +40,9 @@
     <div class="navbar-right">
         <ul class="nav-links-account">
             {% if user.is_authenticated %}
+             <li>
+                <a href="{% url 'cocktails:my-cocktails' user.pk %}"><h5>My cocktails</h5></a>
+            </li>
             <li>
                 <a href="{% url 'accounts:user-profile' %}"><h5>Profile</h5></a>
             </li>

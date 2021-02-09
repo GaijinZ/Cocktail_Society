@@ -343,6 +343,7 @@ footer {
     color: black;
     margin: 10px;
     padding: 5px 10px 10px 10px;
+    text-transform: capitalize;
 }
 
 .add-form h4 {
@@ -373,10 +374,10 @@ footer {
 
 .most-rated {
     width: 90%;
-    height: 400px;
+    height: 260px;
     position: absolute;
-    left: 50%;
-    top: 40%;
+    left: 55%;
+    top: 35%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: row;
@@ -386,7 +387,7 @@ footer {
 
 .most-rated h2 {
     position: absolute;
-    left: 60px;
+    left: 1px;
     top: 1px;
     font-size: 20px;
     border-bottom: 5px solid #071D61;
@@ -399,9 +400,10 @@ footer {
 .most-rated-item {
     display: flex;
     justify-content: space-between;
-    margin: 40px;
+    margin: 35px;
     padding: 15px 20px 20px 20px;
     text-align: center;
+    text-transform: capitalize;
 }
 
 .most-rated a {
@@ -449,3 +451,99 @@ footer {
     margin: 40px;
     font-family: 'Poppins', sans-serif;
 }
+
+.results {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 10 10px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.results a {
+    text-decoration: none;
+    color: #071D61;
+}
+
+.recently-added {
+    width: 90%;
+    height: 260px;
+    position: absolute;
+    left: 10%;
+    top: 55%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: 'Poppins', sans-serif;
+}
+
+.recently-added h2 {
+    position: absolute;
+    left: 1x;
+    top: 10px;
+    font-size: 20px;
+    border-bottom: 5px solid #071D61;
+}
+
+.recently-added h4 {
+    font-size: 14px;
+}
+
+.recently-added a {
+    text-decoration: none;
+    color: #071D61;
+}
+
+.recently-added-items {
+    display: flex;
+    justify-content: space-between;
+    margin: 35px;
+    padding: 15px 20px 20px 20px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.recently-commented {
+    width: 90%;
+    height: 260px;
+    position: absolute;
+    left: 10%;
+    top: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: 'Poppins', sans-serif;
+}
+
+.recently-commented h2 {
+    position: absolute;
+    left: 1x;
+    top: 10px;
+    font-size: 20px;
+    border-bottom: 5px solid #071D61;
+}
+
+.recently-commented h4 {
+    font-size: 14px;
+}
+
+.recently-commented a {
+    text-decoration: none;
+    color: #071D61;
+}
+
+.recently-commented-items {
+    display: flex;
+    justify-content: space-between;
+    margin: 35px;
+    padding: 15px 20px 20px 20px;
+    text-align: center;
+    text-transform: capitalize;
+}
+

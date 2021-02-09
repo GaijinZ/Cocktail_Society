@@ -3,14 +3,40 @@
 {% block content %}
 <div class="most-rated">
     <h2>Cocktails with most likes</h2>
-    {% for cocktail in object_list %}
+    {% for likes in most_likes %}
      <div class="most-rated-item">
-        <a href="{% url 'cocktails:cocktail-details' cocktail.pk %}">
-            <h4>{{ cocktail.cocktail_name }}</h4>
-            <img src="{{ cocktail.image.url }}" width="200" height="200">
-            <h4>Made by {{ cocktail.user.username }}</h4>
+        <a href="{% url 'cocktails:cocktail-details' likes.pk %}">
+            <h4>{{ likes.cocktail_name }}</h4>
+            <img src="{{ likes.image.url }}" width="150" height="150">
+            <h4>Made by {{ likes.user.username }}</h4>
         </a>
      </div>
    {% endfor %}
+</div>
+
+<div class="recently-added">
+    <h2>Recently added cocktails</h2>
+    {% for recently in recently_added %}
+     <div class="recently-added-items">
+        <a href="{% url 'cocktails:cocktail-details' recently.pk %}">
+            <h4>{{ recently.cocktail_name|capfirst }}</h4>
+            <img src="{{ recently.image.url }}" width="150" height="150">
+            <h4>Made by {{ recently.user.username }}</h4>
+        </a>
+     </div>
+   {% endfor %}
+</div>
+
+<div class="recently-commented">
+    <h2>Freshly commented</h2>
+    {% for comment in recently_commented %}
+    <div class="recently-commented-items">
+        <a href="{% url 'cocktails:cocktail-details' comment.cocktail.pk %}">
+            <h4>{{ comment.cocktail.cocktail_name }}</h4>
+            <img src="{{ comment.cocktail.image.url }}" width="150" height="150">
+            <h4>Made by {{ comment.cocktail.user.username }}</h4>
+        </a>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

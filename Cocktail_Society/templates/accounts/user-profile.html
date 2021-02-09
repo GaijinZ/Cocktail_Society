@@ -21,6 +21,8 @@
             <p>{{ object.last_name|capfirst }}</p>
             <div class="link">
             <button class="btn"><a href="{% url 'accounts:edit-profile' %}">Edit Profile</a></button>
+                <br/>
+            <button class="btn-delete"><a href="{% url 'accounts:delete-profile' object.pk %}">Delete Profile</a></button>
             </div>
         </form>
     </div>
