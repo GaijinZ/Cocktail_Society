@@ -9,6 +9,16 @@ class AddCocktailForm(forms.ModelForm):
     execution = forms.CharField(max_length=150,
                                 widget=forms.Textarea(attrs={'rows': '4', 'cols': '40'}))
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        object = super().save(commit=False)
+        object.user = self.request.user
+        object.save()
+        return object
+
     class Meta:
         model = Cocktail
         fields = ['cocktail_name',
@@ -19,16 +29,6 @@ class AddCocktailForm(forms.ModelForm):
                   'execution',
                   'image',
                   ]
-
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
-        super().__init__(*args, **kwargs)
-
-    def save(self, commit=True, *args, **kwargs):
-        object = super().save(commit=False)
-        object.user = self.request.user
-        object.save()
-        return object
 
 
 class CommentForm(forms.ModelForm):

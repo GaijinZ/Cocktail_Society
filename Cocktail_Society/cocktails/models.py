@@ -35,7 +35,7 @@ class Cocktail(models.Model):
     method_category = models.CharField(max_length=50, choices=METHODS)
     ingredients = models.TextField(max_length=100, null=True)
     execution = models.TextField(max_length=150)
-    image = models.ImageField(upload_to='cocktails_pics',validators=[validate_image])
+    image = models.ImageField(upload_to='cocktails_pics', validators=[validate_image])
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     created = models.DateField(default=datetime.now)
     likes = models.ManyToManyField(Account, default=None, blank=True, related_name='likes')

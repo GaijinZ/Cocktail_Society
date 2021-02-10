@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import FormView, DetailView, ListView, DeleteView, CreateView
+from django.views.generic import DetailView, ListView, DeleteView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Count
@@ -50,7 +50,7 @@ class HomePageView(ListView):
         return context
 
 
-class AddCocktail(SuccessMessageMixin, LoginRequiredMixin, FormView):
+class AddCocktail(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     """
     Page to add your cocktail with all the description and image.
     """
@@ -59,6 +59,11 @@ class AddCocktail(SuccessMessageMixin, LoginRequiredMixin, FormView):
     template_name = 'cocktails/add-cocktail.html'
     success_url = '/'
     success_message = 'Cocktail added'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
 
 class SearchCocktail(LoginRequiredMixin, FilterView):
